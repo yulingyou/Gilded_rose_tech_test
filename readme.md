@@ -20,3 +20,24 @@ We have recently signed a supplier of conjured items. This requires an update to
 * “Conjured” items degrade in Quality twice as fast as normal items
 
 Feel free to make any changes to the `UpdateQuality` method and add any new code as long as everything still works correctly. However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn’t believe in shared code ownership (you can make the `UpdateQuality` method and Items property static if you like, we’ll cover for you)."*
+
+## Installation
+1. Clone this repo ```git@github.com:yulingyou/Gilded_rose_tech_test.git```
+2. Run ```bundle install```
+
+## Technologies
+1. Language: ruby 3.0.0
+2. Test: RSpec, run 'rspec' to test
+3. Gem 'simplecov', check the coverage of tests
+
+## Approach
+
+1. Start by writing tests and make sure after refactor the update_quality method, the test is still passed.
+2. Refactor the update_quality method to made it clearly and shorter.
+3. Add new feature to the system so that they can begin selling a new category of items.
+
+## Test Coverage
+```
+Coverage report generated for RSpec to /Users/daisy/Projects/week10/Gilded_rose_tech_test/coverage. 162 / 166 LOC (97.59%) covered.
+```
+  
