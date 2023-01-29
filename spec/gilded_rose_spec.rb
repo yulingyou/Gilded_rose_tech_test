@@ -37,4 +37,12 @@ RSpec.describe GildedRose do
     result = gilded_rose.update_quality()
     expect(result[0].quality).to eq(18)
   end
+
+  it "the quality of an item is never negative" do
+    item = Item.new('item1',10,0)
+    gilded_rose = GildedRose.new
+    gilded_rose.add(item)
+    result = gilded_rose.update_quality()
+    expect(result[0].quality).to eq(0)
+  end
 end

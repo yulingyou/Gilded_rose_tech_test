@@ -14,17 +14,33 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      if expired_item?(item)
-        item.quality = item.quality - 2
+      if quality_eq_zero?(item)
+        quality_eq_zero_result(item)
+      elsif expired_item?(item)
+          expired_item_result(item)
       else
-        item.quality = item.quality - 1
-        item.sell_in = item.sell_in - 1
+          item.quality = item.quality - 1
+          item.sell_in = item.sell_in - 1
       end
     end
   end
 
+  def quality_eq_zero?(item)
+    item.quality <= 0
+  end
+
+  def quality_eq_zero_result(item)
+    item.quality = 0
+    item.sell_in = item.sell_in - 1
+  end
+
   def expired_item?(item)
       item.sell_in <= 0
+  end
+
+  def expired_item_result(item)
+    item.quality = item.quality - 2
+    item.sell_in = item.sell_in - 1
   end
 
   def default_update_quality()
