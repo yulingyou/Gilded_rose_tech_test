@@ -33,8 +33,10 @@ class GildedRose
   end
 
   def item_eq_aged_brie_result(item)
+    if item.quality < 50
     item.quality += 1
     item.sell_in -= 1
+    end
   end
 
   def quality_eq_zero?(item)

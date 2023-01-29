@@ -53,4 +53,12 @@ RSpec.describe GildedRose do
     result = gilded_rose.update_quality()
     expect(result[0].quality).to eq(11)
   end
+
+  it "quality of an item is never more than 50" do
+    item = Item.new("Aged Brie",10,50)
+    gilded_rose = GildedRose.new
+    gilded_rose.add(item)
+    result = gilded_rose.update_quality()
+    expect(result[0].quality).to eq(50)
+  end
 end
