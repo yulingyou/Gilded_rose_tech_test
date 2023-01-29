@@ -45,4 +45,12 @@ RSpec.describe GildedRose do
     result = gilded_rose.update_quality()
     expect(result[0].quality).to eq(0)
   end
+
+  it "should increases in Quality the older it gets if item is 'Aged Brie'" do
+    item = Item.new("Aged Brie",10,10)
+    gilded_rose = GildedRose.new
+    gilded_rose.add(item)
+    result = gilded_rose.update_quality()
+    expect(result[0].quality).to eq(11)
+  end
 end
