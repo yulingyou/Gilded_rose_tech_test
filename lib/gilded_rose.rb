@@ -15,6 +15,8 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       case 
+      when item_eq_backstage_passes?(item)
+        item_eq_backstage_passes_result(item)
       when item_eq_sulfuras?(item)
         item_eq_sulfuras_result(item)
       when item_eq_aged_brie?(item)
@@ -29,7 +31,24 @@ class GildedRose
       end
     end
   end
-  
+
+  def item_eq_backstage_passes?(item)
+    item.name == 'Backstage passes to a TAFKAL80ETC concert'
+  end
+
+  def item_eq_backstage_passes_result(item)
+    if item.sell_in <= 0
+      item.quality = 0
+      item.sell_in -= 1
+    elsif  item.sell_in <= 5
+      item.quality += 3
+      item.sell_in -= 1
+    elsif item.sell_in <= 10
+      item.quality += 2
+      item.sell_in -= 1
+    end
+  end
+
 
   def item_eq_sulfuras?(item)
     item.name == 'Sulfuras, Hand of Ragnaros'

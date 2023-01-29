@@ -80,7 +80,7 @@ RSpec.describe GildedRose do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert",10,20)
       gilded_rose = GildedRose.new
       gilded_rose.add(item)
-      result = gilded_rose.default_update_quality()
+      result = gilded_rose.update_quality()
       expect(result[0].sell_in).to eq(9)
       expect(result[0].quality).to eq(22)
     end
@@ -89,7 +89,7 @@ RSpec.describe GildedRose do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert",5,20)
       gilded_rose = GildedRose.new
       gilded_rose.add(item)
-      result = gilded_rose.default_update_quality()
+      result = gilded_rose.update_quality()
       expect(result[0].sell_in).to eq(4)
       expect(result[0].quality).to eq(23)
     end
@@ -98,7 +98,7 @@ RSpec.describe GildedRose do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert",0,20)
       gilded_rose = GildedRose.new
       gilded_rose.add(item)
-      result = gilded_rose.default_update_quality()
+      result = gilded_rose.update_quality()
       expect(result[0].sell_in).to eq(-1)
       expect(result[0].quality).to eq(0)
     end
