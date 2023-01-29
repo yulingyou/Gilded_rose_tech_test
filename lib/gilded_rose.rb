@@ -15,6 +15,8 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       case 
+      when item_eq_conjured?(item)
+        item_eq_conjured_result(item)
       when item_eq_backstage_passes?(item)
         item_eq_backstage_passes_result(item)
       when item_eq_sulfuras?(item)
@@ -32,19 +34,33 @@ class GildedRose
     end
   end
 
+  def item_eq_conjured?(item)
+    item.name == 'Conjured'
+  end
+
+  def item_eq_conjured_result(item)
+    item.quality -= 2
+    item.sell_in -= 1
+  end
+
   def item_eq_backstage_passes?(item)
     item.name == 'Backstage passes to a TAFKAL80ETC concert'
   end
 
   def item_eq_backstage_passes_result(item)
-    if item.sell_in <= 0
-      item.quality = 0
-      item.sell_in -= 1
-    elsif  item.sell_in <= 5
-      item.quality += 3
-      item.sell_in -= 1
-    elsif item.sell_in <= 10
-      item.quality += 2
+    if item.quality < 50
+      if item.sell_in <= 0
+        item.quality = 0
+        item.sell_in -= 1
+      elsif  item.sell_in <= 5
+        item.quality += 3
+        item.sell_in -= 1
+      elsif item.sell_in <= 10
+        item.quality += 2
+        item.sell_in -= 1
+      end
+    else 
+      item.quality = 50
       item.sell_in -= 1
     end
   end
@@ -68,6 +84,7 @@ class GildedRose
     item.quality += 1
     item.sell_in -= 1
     else
+      item.quality = 50
       item.sell_in -= 1
     end
   end

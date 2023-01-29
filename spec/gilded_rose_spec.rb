@@ -75,6 +75,15 @@ RSpec.describe GildedRose do
     expect(result[0].quality).to eq(80)
   end
 
+  it "'Conjured' items degrade in Quality twice as fast as normal items" do
+    item = Item.new("Conjured",20,30)
+    gilded_rose = GildedRose.new
+    gilded_rose.add(item)
+    result = gilded_rose.update_quality()
+    expect(result[0].sell_in).to eq(19)
+    expect(result[0].quality).to eq(28)
+  end
+
   context "Backstage passes" do
     it "'Backstage passes's qauality increases by 2 when there are 10 days or less" do 
       item = Item.new("Backstage passes to a TAFKAL80ETC concert",10,20)
