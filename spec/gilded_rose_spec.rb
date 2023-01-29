@@ -29,4 +29,12 @@ RSpec.describe GildedRose do
     result = gilded_rose.update_quality()
     expect(result[0].sell_in).to eq(9)
   end
+
+  it "once the sell by date has passed, quality degrades twice as fast" do
+    item = Item.new('item1',0,20)
+    gilded_rose = GildedRose.new
+    gilded_rose.add(item)
+    result = gilded_rose.update_quality()
+    expect(result[0].quality).to eq(18)
+  end
 end
