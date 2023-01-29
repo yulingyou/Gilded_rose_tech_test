@@ -15,6 +15,8 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       case 
+      when item_eq_sulfuras?(item)
+        item_eq_sulfuras_result(item)
       when item_eq_aged_brie?(item)
         item_eq_aged_brie_result(item)
       when quality_eq_zero?(item)
@@ -22,10 +24,20 @@ class GildedRose
       when expired_item?(item)
           expired_item_result(item)
       else
-          item.quality = item.quality - 1
-          item.sell_in = item.sell_in - 1
+          item.quality -= 1
+          item.sell_in -= 1
       end
     end
+  end
+  
+
+  def item_eq_sulfuras?(item)
+    item.name == 'Sulfuras, Hand of Ragnaros'
+  end
+
+  def item_eq_sulfuras_result(item)
+    item.quality = 80
+    item.sell_in += 0
   end
 
   def item_eq_aged_brie?(item)
@@ -36,6 +48,8 @@ class GildedRose
     if item.quality < 50
     item.quality += 1
     item.sell_in -= 1
+    else
+      item.sell_in -= 1
     end
   end
 
